@@ -3,7 +3,7 @@
 
 const FeatureCard = ({ img, title, description }) => {
     return (
-        <div className="max-w-lg p-4 shadow-lg border-y-2 border-r-2 rounded-md m-3 dark:bg-gray-50 dark:text-gray-800">
+        <div className="w-full md:max-w-md p-4 shadow-lg border-y-2 border-r-2 rounded-md m-3 dark:bg-gray-50 dark:text-gray-800">
             <div className="space-y-4">
                 <div className="space-y-2">
                     <img src={img} alt="" className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500" />

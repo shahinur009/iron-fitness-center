@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "details": "Amazing facilities and top-notch instructors. The Yoga for Beginners class helped me improve my flexibility and balance.",
+        "rating": 5,
+        "name": "Alice Johnson",
+        "image": "https://i.ibb.co/b5tWjDj/Alice-Johnson.jpg"
+    },
+    {
+        "id": 2,
+        "details": "The Advanced Strength Training class is fantastic! The instructor is very knowledgeable and motivates everyone to push their limits.",
+        "rating": 4.8,
+        "name": "Michael Smith",
+        "image": "https://i.ibb.co/rx40DgZ/Michael-Smith.jpg"
+    },
+    {
+        "id": 3,
+        "details": "I love the Cardio Blast class! It's a great way to start the day with a burst of energy. Highly recommend it to anyone looking to burn calories quickly.",
+        "rating": 4.9,
+        "name": "Jennifer Lee",
+        "image": "https://i.ibb.co/b5tWjDj/Alice-Johnson.jpg"
+    },
+    {
+        "id": 4,
+        "details": "Pilates Core has really helped me strengthen my core. The instructor is very patient and makes sure everyone is doing the exercises correctly.",
+        "rating": 4.7,
+        "name": "David Brown",
+        "image": "https://i.ibb.co/mJdcVB8/David-Brown.jpg"
+    },
+    {
+        "id": 5,
+        "details": "HIIT Extreme is not for the faint-hearted, but it's incredibly rewarding. The intensity is high, but the results are worth it.",
+        "rating": 5,
+        "name": "Sarah Williams",
+        "image": "https://i.ibb.co/7RxqkT5/Sarah-Williams.jpg"
+    },
+    {
+        "id": 6,
+        "details": "Spin Class is exhilarating! The instructor keeps us motivated throughout the session. It's a fantastic workout.",
+        "rating": 4.6,
+        "name": "Chris Evans",
+        "image": "https://i.ibb.co/B2w7NMR/Chris-Evans.jpg"
+    },
+    {
+        "id": 7,
+        "details": "Zumba Dance is so much fun! It's a great way to get fit while dancing to awesome music. The energy in the class is contagious.",
+        "rating": 5,
+        "name": "Jessica Martinez",
+        "image": "https://i.ibb.co/1RbHRJ5/Samantha-Green.jpg"
+    },
+    {
+        "id": 8,
+        "details": "Boxing Fitness is a great stress reliever. The combination of boxing techniques and cardio makes it a comprehensive workout.",
+        "rating": 4.8,
+        "name": "John Doe",
+        "image": "https://i.ibb.co/pxbnN0r/Mike-Johnson.png"
+    },
+    {
+        "id": 9,
+        "details": "Body Pump is excellent for building strength. The instructor guides us through every move, ensuring proper form and technique.",
+        "rating": 4.7,
+        "name": "Laura Smith",
+        "image": "https://i.ibb.co/BsTtDsM/Laura-Martinez.jpg"
+    },
+    {
+        "id": 10,
+        "details": "The Meditation and Relaxation class is perfect for unwinding after a hectic day. The instructor's voice is very soothing.",
+        "rating": 4.5,
+        "name": "Samantha Green",
+        "image": "https://i.ibb.co/zxGk47y/Emily-Clark.jpg"
+    }
+]

@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "class_title": "Yoga for Beginners",
+        "duration": "60 minutes",
+        "description": "A gentle introduction to the fundamentals of yoga. Perfect for beginners!",
+        "instructor": "Emily Clark",
+        "image": "https://i.ibb.co/dW4MWGd/yoga.jpg",
+        "schedule": {
+            "Monday": "9:00 AM - 10:00 AM",
+            "Wednesday": "6:00 PM - 7:00 PM",
+            "Friday": "9:00 AM - 10:00 AM"
+        },
+        "members": 14,
+        "category": "regular"
+    },
+    {
+        "id": 2,
+        "class_title": "Advanced Strength Training",
+        "duration": "75 minutes",
+        "description": "An intensive class focused on advanced strength training techniques.",
+        "instructor": "John Doe",
+        "image": "https://i.ibb.co/XXXNDX6/body-building.jpg",
+        "schedule": {
+            "Tuesday": "7:00 PM - 8:15 PM",
+            "Thursday": "7:00 PM - 8:15 PM",
+            "Saturday": "10:00 AM - 11:15 AM"
+        },
+        "members": 10,
+        "category": "regular"
+    },
+    {
+        "id": 3,
+        "class_title": "Cardio Blast",
+        "duration": "45 minutes",
+        "description": "High-energy cardio workout to get your heart pumping and calories burning.",
+        "instructor": "Sarah Lee",
+        "image": "https://i.ibb.co/NFsDd63/cardio-blast.jpg",
+        "schedule": {
+            "Monday": "6:00 AM - 6:45 AM",
+            "Wednesday": "6:00 AM - 6:45 AM",
+            "Friday": "6:00 AM - 6:45 AM"
+        },
+        "members": 20,
+        "category": "popular"
+    },
+    {
+        "id": 4,
+        "class_title": "Pilates Core",
+        "duration": "50 minutes",
+        "description": "Focus on strengthening the core with this Pilates class designed for all levels.",
+        "instructor": "Anna Smith",
+        "image": "https://i.ibb.co/XsV4wDQ/pilates-ball-core.webp",
+        "schedule": {
+            "Tuesday": "8:00 AM - 8:50 AM",
+            "Thursday": "8:00 AM - 8:50 AM",
+            "Saturday": "11:00 AM - 11:50 AM"
+        },
+        "members": 15,
+        "category": "popular"
+    },
+    {
+        "id": 5,
+        "class_title": "HIIT Extreme",
+        "duration": "40 minutes",
+        "description": "High-Intensity Interval Training (HIIT) for those who want to push their limits.",
+        "instructor": "Mike Johnson",
+        "image": "https://i.ibb.co/YPnKx98/1000-F-277239243-8-Vr-VGz-Dc-Sn6sq-N4-VNRCZLYmx5ll-Ch-Veg.jpg",
+        "schedule": {
+            "Monday": "5:00 PM - 5:40 PM",
+            "Wednesday": "5:00 PM - 5:40 PM",
+            "Friday": "5:00 PM - 5:40 PM"
+        },
+        "members": 18,
+        "category": "popular"
+    },
+    {
+        "id": 6,
+        "class_title": "Spin Class",
+        "duration": "55 minutes",
+        "description": "An invigorating cycling class to build endurance and burn calories.",
+        "instructor": "David Brown",
+        "image": "https://i.ibb.co/wr0qLmw/banner1.jpg",
+        "schedule": {
+            "Tuesday": "6:00 AM - 6:55 AM",
+            "Thursday": "6:00 AM - 6:55 AM",
+            "Saturday": "9:00 AM - 9:55 AM"
+        },
+        "members": 19,
+        "category": "popular"
+    },
+    {
+        "id": 7,
+        "class_title": "Zumba Dance",
+        "duration": "60 minutes",
+        "description": "Dance your way to fitness with this fun and energetic Zumba class.",
+        "instructor": "Jessica Williams",
+        "image": "https://i.ibb.co/6049jVH/Zumba-Dance.jpg",
+        "schedule": {
+            "Monday": "7:00 PM - 8:00 PM",
+            "Wednesday": "7:00 PM - 8:00 PM",
+            "Friday": "7:00 PM - 8:00 PM"
+        },
+        "members": 22,
+        "category": "popular"
+    },
+    {
+        "id": 8,
+        "class_title": "Boxing Fitness",
+        "duration": "50 minutes",
+        "description": "A fitness class that combines boxing techniques with cardio and strength training.",
+        "instructor": "Chris Evans",
+        "image": "https://i.ibb.co/x5CZw94/Boxing-Fitness.jpg",
+        "schedule": {
+            "Tuesday": "7:00 PM - 7:50 PM",
+            "Thursday": "7:00 PM - 7:50 PM",
+            "Saturday": "10:00 AM - 10:50 AM"
+        },
+        "members": 16,
+        "category": "popular"
+    },
+    {
+        "id": 9,
+        "class_title": "Body Pump",
+        "duration": "60 minutes",
+        "description": "A barbell workout for anyone looking to get lean, toned, and fit.",
+        "instructor": "Laura Martinez",
+        "image": "https://i.ibb.co/4FBJh38/Body-Pump.jpg",
+        "schedule": {
+            "Monday": "5:00 PM - 6:00 PM",
+            "Wednesday": "5:00 PM - 6:00 PM",
+            "Friday": "5:00 PM - 6:00 PM"
+        },
+        "members": 11,
+        "category": "regular"
+    },
+    {
+        "id": 10,
+        "class_title": "Meditation and Relaxation",
+        "duration": "30 minutes",
+        "description": "A calming session focused on mindfulness, meditation, and relaxation techniques.",
+        "instructor": "Samantha Green",
+        "image": "https://i.ibb.co/BZLVgL9/Meditation-and-Relaxation.jpg",
+        "schedule": {
+            "Tuesday": "8:00 PM - 8:30 PM",
+            "Thursday": "8:00 PM - 8:30 PM",
+            "Sunday": "8:00 PM - 8:30 PM"
+        },
+        "members": 9,
+        "category": "regular"
+    }
+]
