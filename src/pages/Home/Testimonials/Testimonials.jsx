@@ -12,7 +12,7 @@ const Testimonials = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('testimonials.json')
+        fetch('http://localhost:4009/review')
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
@@ -50,7 +50,7 @@ const Testimonials = () => {
 
                 {
                     reviews.map(review => <SwiperSlide
-                        key={review.id} >
+                        key={review._id} >
                         <TestimonialsCard review={review}></TestimonialsCard>
                     </SwiperSlide>)
                 }

@@ -8,7 +8,7 @@ const Classes = () => {
     const [allClass, setAllClasses] = useState([])
 
     useEffect(() => {
-        fetch('classes.json')
+        fetch('http://localhost:4009/class')
             .then(res => res.json())
             .then(data => {
                 const popularData = data.filter(singleClass => singleClass.category === 'popular')

@@ -10,7 +10,9 @@ import img6 from '../../../assets/image/features images/yoga.jpg';
 const Features = () => {
     return (
         <div>
-            
+            <SectionTitle
+                heading={'Features'}>
+            </SectionTitle>
             {/* card-1 */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 bg-black text-white">
                 <FeatureCard img={img1} title={'Body Building'} description={'Bodybuilding is not just about lifting weights, it is about building strength and confidence. As you see your muscles grow and your strength increase, you all gain a new level of self-assurance that extends beyond the gym.'} />
