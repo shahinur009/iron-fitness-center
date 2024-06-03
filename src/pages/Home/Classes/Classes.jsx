@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/sectionTitle/SectionTitle";
 import ClassCards from "./ClassCards";
-import { data } from "autoprefixer";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hook/axiosPublic/useAxiosPublic";
 
 const Classes = () => {
-    const [allClass, setAllClasses] = useState([])
+    const axiosPublic = useAxiosPublic();
 
-    useEffect(() => {
-        fetch('http://localhost:4009/class')
-            .then(res => res.json())
-            .then(data => {
-                const popularData = data.filter(singleClass => singleClass.category === 'popular')
-                setAllClasses(popularData)
-            })
-    }, [])
+    const { data: allClass = [], isLoading } = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get('/classes')
+            // const popularDat = data.category === 'popular'
+            // console.log(data)
+            return data
+        }
+
+    })
+    // console.log(allClass)
+
+    if (isLoading) return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
     return (
         <div>
             <SectionTitle
@@ -24,7 +29,7 @@ const Classes = () => {
                 <div className="grid md:grid-cols-2 text-white my-5 lg:grid-cols-3 gap-5">
                     {
                         allClass.map(singleClass => <ClassCards
-                            key={data._id} singleClass={singleClass}
+                            key={singleClass._id} singleClass={singleClass}
                         ></ClassCards>)
                     }
 

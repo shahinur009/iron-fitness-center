@@ -5,8 +5,8 @@ import AboutUs from './About/AboutUs';
 import Classes from './Classes/Classes';
 import Testimonials from './Testimonials/Testimonials';
 import Subscribe from './NewsLetter/Subscribe';
-import Teams from './Teams/Teams';
 import Forum from './Forum/Forum';
+import Team from './Teams/Team';
 const Home = () => {
     return (
         <div>
@@ -19,7 +19,7 @@ const Home = () => {
             <Classes />
             <Testimonials />
             <Subscribe />
-            <Teams />
+            <Team />
             <Forum />
 
         </div>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const Navbar = () => {
     const { user, logOut } = useAuth() || {};
-    console.log(user)
+    // console.log(user)
     const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
 
     const handleLogOut = () => {

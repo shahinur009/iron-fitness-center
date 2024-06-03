@@ -1,0 +1,202 @@
+[
+    {
+        "name": "John Doe",
+        "image": "https://i.ibb.co/NWcKbZb/John-Doe.jpg",
+        "experience": 10,
+        "socialIcons": {
+            "facebook": "https://facebook.com/johndoe",
+            "twitter": "https://twitter.com/johndoe",
+            "instagram": "https://instagram.com/johndoe",
+            "linkedin": "https://linkedin.com/in/johndoe"
+        },
+        "slots": [
+            "Monday 9-11 AM",
+            "Wednesday 1-3 PM",
+            "Friday 4-6 PM"
+        ],
+        "otherInfo": "Specializes in strength training and nutrition.",
+        "bio": "John is a certified fitness trainer with a decade of experience in helping clients achieve their fitness goals. His approach combines personalized workout plans with nutritional guidance.",
+        "knowMore": "https://example.com/trainers/john",
+        "specialist": "Strength Training and Nutrition"
+    },
+    {
+        "name": "Jane Smith",
+        "image": "https://i.ibb.co/Jc74yKz/Anna-Smith.jpg",
+        "experience": 8,
+        "socialIcons": {
+            "facebook": "https://facebook.com/janesmith",
+            "twitter": "https://twitter.com/janesmith",
+            "instagram": "https://instagram.com/janesmith",
+            "linkedin": "https://linkedin.com/in/janesmith"
+        },
+        "slots": [
+            "Tuesday 10-12 AM",
+            "Thursday 2-4 PM",
+            "Saturday 9-11 AM"
+        ],
+        "otherInfo": "Certified yoga instructor and wellness coach.",
+        "bio": "Jane specializes in yoga and holistic wellness. With eight years of experience, she helps clients find balance and peace through tailored yoga sessions and wellness advice.",
+        "knowMore": "https://example.com/trainers/jane",
+        "specialist": "Yoga and Holistic Wellness"
+    },
+    {
+        "name": "Robert Brown",
+        "image": "https://i.ibb.co/W5t3Bd5/David-Brown.jpg",
+        "experience": 5,
+        "socialIcons": {
+            "facebook": "https://facebook.com/robertbrown",
+            "twitter": "https://twitter.com/robertbrown",
+            "instagram": "https://instagram.com/robertbrown",
+            "linkedin": "https://linkedin.com/in/robertbrown"
+        },
+        "slots": [
+            "Monday 2-4 PM",
+            "Wednesday 10-12 AM",
+            "Friday 1-3 PM"
+        ],
+        "otherInfo": "Expert in HIIT and functional training.",
+        "bio": "Robert brings a high-energy approach to fitness with a focus on HIIT and functional training. He has helped numerous clients improve their strength and endurance.",
+        "knowMore": "https://example.com/trainers/robert",
+        "specialist": "HIIT and Functional Training"
+    },
+    {
+        "name": "Emily Davis",
+        "image": "https://i.ibb.co/zxGk47y/Emily-Clark.jpg",
+        "experience": 7,
+        "socialIcons": {
+            "facebook": "https://facebook.com/emilydavis",
+            "twitter": "https://twitter.com/emilydavis",
+            "instagram": "https://instagram.com/emilydavis",
+            "linkedin": "https://linkedin.com/in/emilydavis"
+        },
+        "slots": [
+            "Tuesday 9-11 AM",
+            "Thursday 1-3 PM",
+            "Saturday 10-12 AM"
+        ],
+        "otherInfo": "Specializes in pilates and core strengthening.",
+        "bio": "Emily is a seasoned pilates instructor who emphasizes core strength and flexibility. Her sessions are designed to enhance physical conditioning and overall well-being.",
+        "knowMore": "https://example.com/trainers/emily",
+        "specialist": "Pilates and Core Strengthening"
+    },
+    {
+        "name": "Michael Johnson",
+        "image": "https://i.ibb.co/pxbnN0r/Mike-Johnson.png",
+        "experience": 12,
+        "socialIcons": {
+            "facebook": "https://facebook.com/michaeljohnson",
+            "twitter": "https://twitter.com/michaeljohnson",
+            "instagram": "https://instagram.com/michaeljohnson",
+            "linkedin": "https://linkedin.com/in/michaeljohnson"
+        },
+        "slots": [
+            "Monday 1-3 PM",
+            "Wednesday 4-6 PM",
+            "Friday 9-11 AM"
+        ],
+        "otherInfo": "Focuses on endurance training and marathon preparation.",
+        "bio": "Michael has extensive experience in endurance training, helping clients prepare for marathons and other long-distance events. His programs are tailored to boost stamina and performance.",
+        "knowMore": "https://example.com/trainers/michael",
+        "specialist": "Endurance Training and Marathon Preparation"
+    },
+    {
+        "name": "Linda Williams",
+        "image": "https://i.ibb.co/7RxqkT5/Sarah-Williams.jpg",
+        "experience": 6,
+        "socialIcons": {
+            "facebook": "https://facebook.com/lindawilliams",
+            "twitter": "https://twitter.com/lindawilliams",
+            "instagram": "https://instagram.com/lindawilliams",
+            "linkedin": "https://linkedin.com/in/lindawilliams"
+        },
+        "slots": [
+            "Monday 10-12 AM",
+            "Wednesday 3-5 PM",
+            "Friday 2-4 PM"
+        ],
+        "otherInfo": "Expert in dance fitness and Zumba.",
+        "bio": "Linda's passion for dance fitness shines through in her energetic Zumba classes. She has six years of experience making fitness fun and engaging.",
+        "knowMore": "https://example.com/trainers/linda",
+        "specialist": "Dance Fitness and Zumba"
+    },
+    {
+        "name": "James Wilson",
+        "image": "https://i.ibb.co/4FBJh38/Body-Pump.jpg",
+        "experience": 15,
+        "socialIcons": {
+            "facebook": "https://facebook.com/jameswilson",
+            "twitter": "https://twitter.com/jameswilson",
+            "instagram": "https://instagram.com/jameswilson",
+            "linkedin": "https://linkedin.com/in/jameswilson"
+        },
+        "slots": [
+            "Tuesday 9-11 AM",
+            "Thursday 1-3 PM",
+            "Saturday 4-6 PM"
+        ],
+        "otherInfo": "Specializes in bodyweight training and calisthenics.",
+        "bio": "James has dedicated fifteen years to mastering bodyweight exercises and calisthenics, helping clients achieve remarkable fitness levels without traditional weights.",
+        "knowMore": "https://example.com/trainers/james",
+        "specialist": "Bodyweight Training and Calisthenics"
+    },
+    {
+        "name": "Patricia Martinez",
+        "image": "https://i.ibb.co/x5CZw94/Boxing-Fitness.jpg",
+        "experience": 9,
+        "socialIcons": {
+            "facebook": "https://facebook.com/patriciamartinez",
+            "twitter": "https://twitter.com/patriciamartinez",
+            "instagram": "https://instagram.com/patriciamartinez",
+            "linkedin": "https://linkedin.com/in/patriciamartinez"
+        },
+        "slots": [
+            "Monday 3-5 PM",
+            "Wednesday 2-4 PM",
+            "Friday 10-12 AM"
+        ],
+        "otherInfo": "Focuses on flexibility training and stretching routines.",
+        "bio": "Patricia's nine years of experience in flexibility training have equipped her with the skills to enhance clients' range of motion and reduce injury risk.",
+        "knowMore": "https://example.com/trainers/patricia",
+        "specialist": "Flexibility Training and Stretching Routines"
+    },
+    {
+        "name": "David Garcia",
+        "image": "https://i.ibb.co/W5t3Bd5/David-Brown.jpg",
+        "experience": 11,
+        "socialIcons": {
+            "facebook": "https://facebook.com/davidgarcia",
+            "twitter": "https://twitter.com/davidgarcia",
+            "instagram": "https://instagram.com/davidgarcia",
+            "linkedin": "https://linkedin.com/in/davidgarcia"
+        },
+        "slots": [
+            "Tuesday 2-4 PM",
+            "Thursday 10-12 AM",
+            "Saturday 1-3 PM"
+        ],
+        "otherInfo": "Expert in sports performance and agility training.",
+        "bio": "David specializes in sports performance, using his eleven years of experience to help athletes improve their speed, agility, and overall performance.",
+        "knowMore": "https://example.com/trainers/david",
+        "specialist": "Sports Performance and Agility Training"
+    },
+    {
+        "name": "Jennifer Thomas",
+        "image": "https://i.ibb.co/0fKXVCJ/Banner.jpg",
+        "experience": 4,
+        "socialIcons": {
+            "facebook": "https://facebook.com/jenniferthomas",
+            "twitter": "https://twitter.com/jenniferthomas",
+            "instagram": "https://instagram.com/jenniferthomas",
+            "linkedin": "https://linkedin.com/in/jenniferthomas"
+        },
+        "slots": [
+            "Monday 9-11 AM",
+            "Wednesday 4-6 PM",
+            "Friday 1-3 PM"
+        ],
+        "otherInfo": "Specializes in prenatal and postnatal fitness.",
+        "bio": "Jennifer's expertise in prenatal and postnatal fitness helps new and expecting mothers stay fit and healthy. Her personalized programs cater to the unique needs of mothers.",
+        "knowMore": "https://example.com/trainers/jennifer",
+        "specialist": "Prenatal and Postnatal Fitness"
+    }
+]

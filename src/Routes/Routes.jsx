@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home";
 import Login from "../Shared/login/Login";
 import Registration from "../Shared/Registration/Registration";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AllTrainers from "../pages/AllTrainerPage/AllTrainers";
+import AllClasses from "../pages/AllClasses/AllClasses";
+import TrainerDetails from "../pages/AllTrainerPage/TrainerDetails";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +17,19 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/all-trainer',
+                element: <AllTrainers />
+            },
+            {
+                path: '/all-classes',
+                element: <AllClasses />
+            },
+            {
+                path: '/trainer/:id',
+                element: <TrainerDetails />
+
             },
             {
                 path: '/login',
