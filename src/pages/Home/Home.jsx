@@ -4,6 +4,8 @@ import Features from './Features/Features';
 import AboutUs from './About/AboutUs';
 import Classes from './Classes/Classes';
 import Testimonials from './Testimonials/Testimonials';
+import Subscribe from './NewsLetter/Subscribe';
+import Teams from './Teams/Teams';
 const Home = () => {
     return (
         <div>
@@ -15,6 +17,10 @@ const Home = () => {
             <AboutUs />
             <Classes />
             <Testimonials />
+            {/* latest community */}
+
+            <Subscribe />
+            <Teams />
         </div>
     );
 };
