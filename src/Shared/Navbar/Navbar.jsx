@@ -40,7 +40,12 @@ const Navbar = () => {
         <li><Link to='/all-trainer'>All Trainer</Link></li>
         <li><Link to='/all-classes'>All Classes</Link></li>
         <li><Link to='/all-classes'>Community</Link></li>
-        {user ? <><button onClick={handleLogOut} className="btn btn-ghost">LogOut</button></>
+        {user ? <>
+            <li><Link to='/dashboard'>Dashboard</Link></li>
+            <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+
+        </>
+
             : <><li><Link to='/login'>Login</Link></li></>}
 
         {/* {

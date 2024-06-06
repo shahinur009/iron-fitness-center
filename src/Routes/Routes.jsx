@@ -7,6 +7,11 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AllTrainers from "../pages/AllTrainerPage/AllTrainers";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import TrainerDetails from "../pages/AllTrainerPage/TrainerDetails";
+import DashboardLayout from "../layout/DashboardLayout";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import AddNewSlot from "../pages/Dashboard/Trainer/AddNewSlot";
+import AddNewForum from "../pages/Dashboard/Trainer/AddNewForum";
+import ManageSlots from "../pages/Dashboard/Trainer/ManageSlots";
 
 export const router = createBrowserRouter([
     {
@@ -41,5 +46,27 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        children: [
+            {
+                index: true,
+                element: <Statistics />
+            },
+            {
+                path: 'manageSlots',
+                element: <ManageSlots />
+            },
+            {
+                path: 'addNewSlot',
+                element: <AddNewSlot />
+            },
+            {
+                path: 'addNewForum',
+                element: <AddNewForum />
+            }
+        ],
+    }
 ]);
 
