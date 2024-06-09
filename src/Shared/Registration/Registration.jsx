@@ -3,15 +3,12 @@ import { RiRegisteredLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { Helmet } from "react-helmet-async";
-// import useAxiosPublic from "../../hook/axiosPublic/useAxiosPublic";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { FaSpinner } from "react-icons/fa";
+import { imageUpload } from "../../Api/Utilities/Utilities";
 
 const Registration = () => {
-    // const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile, signInWithGoogle, loading, setLoading, saveUser } = useAuth();
-    // const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state || "/";
@@ -23,31 +20,23 @@ const Registration = () => {
         const email = form.email.value;
         const image = form.image.files[0];
         const password = form.password.value;
-        const formData = new FormData()
-        formData.append('image', image)
-        console.log(formData)
+
 
         try {
             setLoading(true)
             // upload image form imgbb
-            const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
-                formData
-            )
-            console.log(data.data.display_url)
+            const image_url = await imageUpload(image)
+            console.log(image_url)
             // user registration
             const result = await createUser(email, password)
 
-            // const { data: userData } = await axiosPublic.put(`/user`, {
-            //     email: result?.user?.email,
-            //     name: result?.user?.displayName,
-            // });
-            // console.log(result, userData)
-            await saveUser({ ...result.user, displayName: name })
             // save userName and photo in firebase
-            await updateUserProfile(name, data.data.display_url)
+            await saveUser({ ...result.user, displayName: name })
+            // update user profile
+            await updateUserProfile(name, image_url)
             navigate(from, { replace: true })
             toast.success('user registration successfully')
-
+            // error handle
         } catch (error) {
             console.error("Error creating user or updating profile:", error);
             toast.error(error.message);

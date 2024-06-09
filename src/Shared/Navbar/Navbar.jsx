@@ -23,10 +23,9 @@ const Navbar = () => {
         else {
             setTheme('light')
         }
-        // console.log(Theme)
 
     }
-    console.log(user)
+    // console.log(user)
 
 
     useEffect(() => {
