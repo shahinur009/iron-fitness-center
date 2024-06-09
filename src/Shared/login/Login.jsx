@@ -1,4 +1,4 @@
-import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
+import { FaAmericanSignLanguageInterpreting, FaSpinner } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { Helmet } from "react-helmet-async";
@@ -7,37 +7,35 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hook/axiosPublic/useAxiosPublic";
 
 const Login = () => {
-    const { signIn, signInWithGoogle } = useAuth();
+    const { signIn, signInWithGoogle, loading } = useAuth();
+    const axiosPublic = useAxiosPublic()
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/'
 
-    const handleLogin = event => {
+    const handleLogin = async (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
-        signIn(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user)
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your work has been saved",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate(from, { replace: true });
-            })
+
+        navigate(from, { replace: true });
+
+        try {
+            await signIn(email, password)
+            navigate(from, { replace: true })
+            toast.success('login successfully')
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+        }
 
     }
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle()
-            const { data } = await useAxiosPublic.post(`/users`, {
+            const { data } = await axiosPublic.put(`/user`, {
 
                 email: result?.user?.email,
                 name: result?.user?.displayName,
@@ -75,7 +73,11 @@ const Login = () => {
                             <label htmlFor="password" className="block dark:text-gray-600">Password</label>
                             <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                         </div>
-                        <button type="submit" className="block bg-black text-white w-full p-3 text-center rounded-md dark:text-gray-50 dark:bg-violet-600">Sign in</button>
+                        <button
+                            disabled={loading}
+                            type="submit" className="block bg-black text-white w-full p-3 text-center rounded-md dark:text-gray-50 dark:bg-violet-600">
+                            {loading ? <FaSpinner className="animate-spin text-xl text-white mx-auto" /> : 'Login'}
+                        </button>
                     </form>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>

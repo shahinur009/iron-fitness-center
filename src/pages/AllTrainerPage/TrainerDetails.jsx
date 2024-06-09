@@ -15,7 +15,7 @@ const TrainerDetails = () => {
             return data;
         }
     })
-    console.log(trainer)
+    // console.log(trainer)
 
     if (isLoading) return <div className="w-16 h-16 border-4 mx-auto  bg-yellow-500 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
 
@@ -49,7 +49,10 @@ const TrainerDetails = () => {
 
                             <div className="container mx-auto">
                                 {/* Become a trainer section */}
-                                <Link className="btn-success btn w-full mb-5">Become a Trainer</Link>
+                                <Link to='/becomeATrainer'
+                                    
+                                    className="btn-success btn w-full mb-5">Become a Trainer</Link>
+
                                 {/* available slots section */}
                                 <span className="block mb-2 text-xs font-medium tracking-widest text-center uppercase dark:text-violet-600">For Booking</span>
                                 <h2 className="text-5xl font-bold text-center dark:text-gray-900">Available Slots</h2>

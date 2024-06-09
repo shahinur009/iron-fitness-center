@@ -26,6 +26,7 @@ const Navbar = () => {
         // console.log(Theme)
 
     }
+    console.log(user)
 
 
     useEffect(() => {

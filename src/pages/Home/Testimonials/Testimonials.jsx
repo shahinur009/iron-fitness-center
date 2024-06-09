@@ -4,20 +4,23 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useEffect, useState } from "react";
 import { Pagination, Navigation } from 'swiper/modules';
 import TestimonialsCard from "./TestimonialsCard";
+import useAxiosPublic from "../../../hook/axiosPublic/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Testimonials = () => {
-    const [reviews, setReviews] = useState([]);
+    const axiosPublic = useAxiosPublic()
 
-    useEffect(() => {
-        fetch('http://localhost:4009/review')
-            .then(res => res.json())
-            .then(data => {
-                setReviews(data)
-            })
-    }, [])
+    const { data: reviews = [], isLoading } = useQuery({
+        queryKey: ['reviews'],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get('/trainers');
+            return data;
+        }
+    })
+    if (isLoading) return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
+    // console.log(reviews)
     return (
         <section className="my-20">
             <SectionTitle
