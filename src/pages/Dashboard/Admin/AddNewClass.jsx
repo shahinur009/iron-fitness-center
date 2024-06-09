@@ -1,34 +1,32 @@
-import Swal from "sweetalert2";
-import Select from 'react-select';
 import useAuth from "../../../hook/useAuth";
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
 import useAxiosSecure from "../../../hook/axiosSecure/useAxiosSecure";
 import { imageUpload } from "../../../Api/Utilities/Utilities";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 
 const AddNewClass = () => {
-    const { user, setLoading, loading } = useAuth() || {};
+    const { user, loading } = useAuth() || {};
     const axiosSecure = useAxiosSecure();
-    const [imagePreview, setImagePreview] = useState();
-    const [imageText, setImageText] = useState('Upload Image');
-    const [trainerName, setTrainerName] = useState([]);
-    const [selectedTimes, setSelectedTimes] = useState([]);
+
+    const { mutateAsync } = useMutation({
+        mutationFn: async classData => {
+            const { data } = await axiosSecure.post(`/class`, classData)
+            return data;
+        },
+        onSuccess: () => {
+            console.log('Data saved successfully')
+        }
+
+    })
 
     const handleClassAdd = async (e) => {
         e.preventDefault();
         const form = e.target;
-        const className = form.className.value;
+        const class_title = form.class_title.value;
         const description = form.description.value;
-        const numberOfBooked = form.booked.value;
-        const duration = form.duration.value;
-        const category = form.category.value;
-        const trainer = trainerName.map(trainer => trainer.value);
-        const time = selectedTimes.map(time => time.value);
         const image = form.image.files[0];
         const admin = {
             name: user?.displayName,
@@ -37,31 +35,16 @@ const AddNewClass = () => {
         }
         try {
             const image_url = await imageUpload(image)
-            const classData = { className, description, numberOfBooked, duration, category, trainer, time, image: image_url, admin }
+            const classData = { class_title, description, image: image_url, admin }
             console.table(classData)
+            await mutateAsync(classData)
+            toast.success('class add successfully')
         } catch (err) {
             console.log(err)
         }
 
     }
-    const trainer = [
-        { value: 'Emily Clark', label: 'Emily Clark' },
-        { value: 'John Doe', label: 'John Doe' },
-        { value: 'Sarah Lee', label: 'Sarah Lee' },
-        { value: 'David Brown', label: 'David Brown' },
-        { value: 'Jessica Williams', label: 'Jessica Williams' },
-        { value: 'Anna Smith', label: 'Anna Smith' },
-        { value: 'Mike Johnson', label: 'Mike Johnson' },
-        { value: 'Laura Martinez', label: 'Laura Martinez' },
-        { value: 'Chris Evans', label: 'Chris Evans' },
-        { value: 'Samantha Green', label: 'Samantha Green' },
 
-    ];
-    const times = [
-        { value: 'Morning- 06am to 08am', label: 'Morning- 06am to 08am' },
-        { value: 'Evening- 16pm to 18pm', label: 'Evening- 16pm to 18pm' },
-        { value: 'Night- 21pm to 23pm', label: 'Night- 21pm to 23pm' },
-    ];
 
     return (
         <div>
@@ -83,7 +66,7 @@ const AddNewClass = () => {
                             <input
                                 required
                                 type="text"
-                                name="className"
+                                name="class_title"
                                 placeholder="Class Name"
                                 className="input input-bordered input-double-line"
                             />
@@ -94,9 +77,6 @@ const AddNewClass = () => {
                                     <span className="label-text text-white text-lg font-bold">Class Image</span>
                                 </label>
                                 <input
-                                    onChange={e => {
-                                        setImagePreview(URL.createObjectURL(e.target.files[0]))
-                                    }}
                                     required
                                     type="file"
                                     name="image"
@@ -118,75 +98,7 @@ const AddNewClass = () => {
                             className="input input-bordered input-double-line"
                         />
                     </div>
-                    {/* Additional Info */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-white text-lg font-bold">Duration</span>
-                        </label>
-                        <input
-                            name="duration"
-                            type="text"
-                            placeholder="Class Duration"
-                            className="input input-bordered input-double-line"
-                        />
-                    </div>
-                    {/* Category */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-white text-lg font-bold">Category</span>
-                            </label>
-                            <select
-                                required
-                                name="category"
-                                className="select select-bordered input-double-line"
-                            >
-                                <option value="popular">Popular</option>
-                                <option value="trending">Regular</option>
-                                <option value="new">New</option>
-                            </select>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-white text-lg font-bold">Number of Booked</span>
-                            </label>
-                            <textarea
-                                required
-                                name="booked"
-                                placeholder="Number Of Booked Class"
-                                className="input input-bordered input-double-line"
-                            />
-                        </div>
-                    </div>
-
                     {/* User Info */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-white text-lg font-bold">Trainer Name</span>
-                            </label>
-                            <Select className='px-4 py-2 mt-2'
-                                name='day'
-                                options={trainer}
-                                labelField='label'
-                                valueField='label'
-                                isMulti
-                                onChange={setTrainerName}
-                            />
-                        </div>
-                        <div>
-                            <label className="text-white dark:text-gray-200" >Times</label>
-                            <Select className='px-4 py-7'
-                                name='time'
-                                options={times}
-                                labelField='label'
-                                valueField='label'
-                                isMulti
-                                onChange={setSelectedTimes}
-                            />
-                        </div>
-
-                    </div>
                     <button
                         disabled={loading}
                         type='submit'
