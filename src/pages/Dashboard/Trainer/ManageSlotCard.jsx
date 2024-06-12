@@ -1,5 +1,30 @@
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hook/axiosSecure/useAxiosSecure";
+import toast from "react-hot-toast";
 
-const ManageSlotCard = () => {
+const ManageSlotCard = ({ data }) => {
+    console.log(data)
+    //   delete
+    const { mutateAsync } = useMutation({
+        mutationFn: async email => {
+            const { data } = await useAxiosSecure.delete(`/slot/${email}`)
+            return data
+        },
+        onSuccess: data => {
+            console.log(data)
+            toast.success('Successfully deleted.')
+        },
+    })
+
+    //  Handle Delete
+    const handleDelete = async id => {
+        console.log(id)
+        try {
+            await mutateAsync(id)
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <section className="container px-4 mx-auto">
             <div className="flex flex-col">
@@ -9,14 +34,6 @@ const ManageSlotCard = () => {
                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                 <thead className="bg-gray-50 dark:bg-gray-800">
                                     <tr>
-                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            <div className="flex items-center gap-x-3">
-                                                <button className="flex items-center gap-x-2">
-                                                    <span>Sl</span>
-                                                </button>
-                                            </div>
-                                        </th>
-
                                         <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                             Slots Title
                                         </th>
@@ -35,12 +52,11 @@ const ManageSlotCard = () => {
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                     <tr>
-                                        <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
-                                            <div className="inline-flex items-center gap-x-3">
-                                                <span>#</span>
-                                            </div>
+                                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                            {/* <ul>
+                                                <li>{data.skill[0]}, {data.skill[2]},{data.skill[1]}</li>
+                                            </ul> */}
                                         </td>
-                                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 6, 2022</td>
                                         <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
                                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +77,7 @@ const ManageSlotCard = () => {
                                         </td>
                                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                                             <div className="items-center gap-x-6">
-                                                <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                                <button onClick={handleDelete} className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                     Delete
                                                 </button>
                                             </div>
