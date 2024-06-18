@@ -2,7 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hook/axiosPublic/useAxiosPublic";
 import { Link } from "react-router-dom";
 
+<<<<<<< HEAD
 const ClassCard = ({ singleClass }) => {
+=======
+const ClassCard = ({ singleClass}) => {
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
     const { class_title, image, description, _id } = singleClass;
 
 
@@ -31,6 +35,7 @@ const ClassCard = ({ singleClass }) => {
                 <div className="">
                     <h1 className="font-bold ">Trainer list of this class</h1>
                     <div className="grid grid-cols-5">
+<<<<<<< HEAD
                         {
                             trainers?.map((trainer) => {
                                 return <Link key={trainer?._id} to={"/trainer/" + trainer?._id}   >
@@ -40,6 +45,23 @@ const ClassCard = ({ singleClass }) => {
                         }
 
 
+=======
+                        <button aria-label="Share this post" type="button" >
+                            <img src={image} className="rounded-[50%] h-12 w-12" alt="" />
+                        </button>
+                        <button aria-label="Share this post" type="button" >
+                            <img src={image} className="rounded-[50%] h-12 w-12" alt="" />
+                        </button>
+                        <button aria-label="Share this post" type="button" >
+                            <img src={image} className="rounded-[50%] h-12 w-12" alt="" />
+                        </button>
+                        <button aria-label="Share this post" type="button" >
+                            <img src={image} className="rounded-[50%] h-12 w-12" alt="" />
+                        </button>
+                        <button aria-label="Share this post" type="button" >
+                            <img src={image} className="rounded-[50%] h-12 w-12" alt="" />
+                        </button>
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
                     </div>
                 </div>
             </div>

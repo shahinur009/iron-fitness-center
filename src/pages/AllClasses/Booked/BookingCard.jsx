@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 
 const BookingCard = ({ trainer, slot }) => {
@@ -40,6 +41,22 @@ const BookingCard = ({ trainer, slot }) => {
                     }
                 </div>
 
+=======
+
+const BookingCard = ({ slot }) => {
+    const { name, specialist,
+        experience, bio, image, _id, socialIcons, slots } = slot;
+    return (
+        <div className="">
+            <div className="w-full rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800">
+                <img src="https://source.unsplash.com/random/300x300/?2" alt="" className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500" />
+                <div className="flex flex-col justify-between p-6 space-y-8">
+                    <div className="space-y-2">
+                        <h2 className="text-3xl font-semibold tracking-wide">{name}</h2>
+                        <p className="dark:text-gray-800">Curabitur luctus erat nunc, sed ullamcorper erat vestibulum eget.</p>
+                    </div>
+                </div>
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
             </div>
             {/* pricing section */}
             <section className="py-20 dark:bg-gray-100 dark:text-gray-800">
@@ -76,6 +93,7 @@ const BookingCard = ({ trainer, slot }) => {
                                         <span>Tristique enim nec</span>
                                     </li>
                                 </ul>
+<<<<<<< HEAD
                                 <button type="button" onClick={() => {
                                     console.log("clicked")
                                     paymentStarted({
@@ -84,6 +102,9 @@ const BookingCard = ({ trainer, slot }) => {
                                         price: 10
                                     })
                                 }} className="inline-block px-5 py-3 font-semibold tracking-wider text-center rounded dark:bg-violet-600 dark:text-gray-50">Get Started</button>
+=======
+                                <button type="button" className="inline-block px-5 py-3 font-semibold tracking-wider text-center rounded dark:bg-violet-600 dark:text-gray-50">Get Started</button>
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
                             </div>
                         </div>
                         <div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
@@ -121,6 +142,7 @@ const BookingCard = ({ trainer, slot }) => {
                                         <span>Aenean et lectus blandit</span>
                                     </li>
                                 </ul>
+<<<<<<< HEAD
                                 <button onClick={() => {
                                     console.log("clicked")
                                     paymentStarted({
@@ -129,6 +151,9 @@ const BookingCard = ({ trainer, slot }) => {
                                         price: 50
                                     })
                                 }} className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded dark:bg-gray-100 dark:text-violet-600">Get Started</button>
+=======
+                                <a rel="noopener noreferrer" href="#" className="inline-block w-full px-5 py-3 font-bold tracking-wider text-center rounded dark:bg-gray-100 dark:text-violet-600">Get Started</a>
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
                             </div>
                         </div>
                         <div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-1/3 lg:mb-0">
@@ -172,6 +197,7 @@ const BookingCard = ({ trainer, slot }) => {
                                         <span>Vivamus ut lectus ex</span>
                                     </li>
                                 </ul>
+<<<<<<< HEAD
                                 <button onClick={() => {
                                     console.log("premimum")
                                     paymentStarted({
@@ -180,6 +206,9 @@ const BookingCard = ({ trainer, slot }) => {
                                         price: 100
                                     })
                                 }} className="inline-block w-full px-5 py-3 font-semibold tracking-wider text-center rounded dark:bg-violet-600 dark:text-gray-50">Get Started</button>
+=======
+                                <a rel="noopener noreferrer" href="#" className="inline-block w-full px-5 py-3 font-semibold tracking-wider text-center rounded dark:bg-violet-600 dark:text-gray-50">Get Started</a>
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
                             </div>
                         </div>
                     </div>

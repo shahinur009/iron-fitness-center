@@ -22,7 +22,10 @@ import AllTrainersInfo from "../pages/Dashboard/Admin/AllTrainersInfo";
 import Activity from "../pages/Dashboard/Member/Activity";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
 import TrainerBooked from "../pages/AllClasses/Booked/TrainerBooked";
+<<<<<<< HEAD
 import PayNow from "../pages/Payment/PayNow";
+=======
+>>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
 
 export const router = createBrowserRouter([
     {
