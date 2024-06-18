@@ -25,9 +25,19 @@ const AddNewSlot = () => {
         }
 
     })
+    const { data: classes } = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/classes`)
+            console.log(data)
+            return data;
+
+        }
+
+    })
     const { mutateAsync } = useMutation({
         mutationFn: async trainerSlotData => {
-            const { data } = await axiosSecure.post(`/slots`, trainerSlotData)
+            const { data } = await axiosSecure.post(`/trainers`, trainerSlotData)
             return data;
         },
         onSuccess: () => {
@@ -40,12 +50,11 @@ const AddNewSlot = () => {
         const form = e.target;
         const trainerName = form.trainerName.value;
         const email = form.email.value;
-        const description = form.description.value;
         const day = selectedDays.map(day => day?.value);
         const time = selectedTimes.map(time => time?.value);
         const skill = selectedSkills.map(skill => skill?.value);
 
-        
+
 
         const trainer = {
             name: user?.displayName,
@@ -53,7 +62,7 @@ const AddNewSlot = () => {
             image: user?.photoURL,
         }
         try {
-            const trainerSlotData = { trainerName, email, description, trainer, day, time, skill }
+            const trainerSlotData = { trainerName, email, trainer, day, time, skill }
             // console.table(trainerSlotData)
             await mutateAsync(trainerSlotData)
             toast.success('class add successfully')
@@ -129,7 +138,7 @@ const AddNewSlot = () => {
                                 options={options}
                                 labelField='label'
                                 valueField='label'
-
+                                disabled
                                 defaultValue={data?.day?.map(d => { return { value: `${d}`, label: `${d}` } })}
                                 isMulti
                                 onChange={setSelectedDays}
@@ -142,6 +151,7 @@ const AddNewSlot = () => {
                                 options={times}
                                 labelField='label1'
                                 valueField='label1'
+                                disabled
                                 defaultValue={data?.time?.map(t => { return { value: `${t}`, label: `${t}` } })}
                                 isMulti
                                 onChange={setSelectedTimes}
@@ -150,28 +160,16 @@ const AddNewSlot = () => {
 
                     </div>
                     <div>
-                        <label className="text-gray-700 dark:text-gray-200" >Skill</label>
+                        <label className="text-white dark:text-gray-200" >Class Name</label>
                         <Select className='px-4 py-2 mt-2'
                             name='Skill'
                             options={skills}
                             labelField='label2'
+                            disabled
                             valueField='label2'
-                            defaultValue={data?.skill?.map(s => { return { value: `${s}`, label: `${s}` } })}
+                            defaultValue={classes?.map(s => { return { value: `${s}`, label: `${s}` } })}
                             isMulti
                             onChange={setSelectedSkills}
-                        />
-                    </div>
-                    {/* Class Details */}
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text text-white text-lg font-bold">Description</span>
-                        </label>
-                        <textarea
-                            required
-                            name="description"
-                            // defaultValue={data.description}
-                            placeholder="Class Description"
-                            className="textarea textarea-warning"
                         />
                     </div>
                     {/* User Info */}

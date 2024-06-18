@@ -14,7 +14,7 @@ const Subscribe = () => {
             email,
         };
 
-        fetch('http://localhost:4009/subscribe', {
+        fetch('http://localhost:5000/subscribe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const Subscribe = () => {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Your name"
-                                    className="w-full p-4 rounded-md focus:ring focus:ring-violet-400 border-gray-700 dark:border-gray-300"
+                                    className="w-full p-4 rounded-md focus:ring focus:ring-violet-400 border-gray-700 dark:border-gray-300 text-black"
                                     required
                                 />
                             </div>

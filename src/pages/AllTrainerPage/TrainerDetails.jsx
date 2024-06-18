@@ -57,22 +57,39 @@ const TrainerDetails = () => {
                                 <span className="block mb-2 text-xs font-medium tracking-widest text-center uppercase dark:text-violet-600">For Booking</span>
                                 <h2 className="text-5xl font-bold text-center dark:text-gray-900">Available Slots</h2>
                                 <div className="grid gap-6 my-16 lg:grid-cols-3">
-                                    <Link to={'/bookingPage'} className="flex flex-col bg-black text-white p-8 space-y-4 rounded-md dark:bg-gray-50">
+                                    <Link to={'/bookingPage'}
+                                    
+                                        state={{ 
+                                            trainer:trainer,
+                                        selectedSlot:trainer.slots
+                                     }}
+                                        className="flex flex-col bg-black text-white p-8 space-y-4 rounded-md dark:bg-gray-50">
                                         <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full dark:bg-violet-600 dark:text-gray-50">1</div>
                                         <p className="text-2xl font-semibold">
-                                            {trainer.slots[0]}
+                                            {trainer.slots}
                                         </p>
                                     </Link>
-                                    <Link to={'/bookingPage'} className="flex flex-col p-8 space-y-4 bg-black text-white rounded-md dark:bg-gray-50">
+                                    <Link
+                                        state={{
+                                            trainer: trainer,
+                                            selectedSlot: trainer.slots
+                                        }}
+                                        to={'/bookingPage'} className="flex flex-col p-8 space-y-4 bg-black text-white rounded-md dark:bg-gray-50">
                                         <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full dark:bg-violet-600 dark:text-gray-50">2</div>
                                         <p className="text-2xl font-semibold">
-                                            {trainer.slots[1]}
+                                            {trainer.slots}
                                         </p>
                                     </Link>
-                                    <Link to={'/bookingPage'} className="flex flex-col p-8 space-y-4 bg-black text-white rounded-md dark:bg-gray-50">
+                                    <Link 
+                                    
+                                        state={{
+                                            trainer: trainer,
+                                            selectedSlot: trainer.slots
+                                        }}
+                                    to={'/bookingPage'} className="flex flex-col p-8 space-y-4 bg-black text-white rounded-md dark:bg-gray-50">
                                         <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full dark:bg-violet-600 dark:text-gray-50">3</div>
                                         <p className="text-2xl font-semibold">
-                                            {trainer.slots[2]}
+                                            {trainer.slots}
                                         </p>
                                     </Link>
                                 </div>

@@ -79,6 +79,7 @@ const Sidebar = () => {
                             {/* Statistics */}
                             <MenuItems label='Statistics' address='/dashboard' icon={BsGraphUp}></MenuItems>
                             {/* Trainer Menu */}
+                            {console.log(role)}
                             {role === 'member' && <MemberMenu />}
                             {role === 'trainer' && <TrainerMenu />}
                             {role === 'admin' && <AdminMenu />}

@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hook/axiosPublic/useAxiosPublic";
+import { Link } from "react-router-dom";
 
-const ClassCard = ({ singleClass, index }) => {
+const ClassCard = ({ singleClass }) => {
     const { class_title, image, description, _id } = singleClass;
+
 
     const axiosPublic = useAxiosPublic();
 
@@ -15,41 +17,33 @@ const ClassCard = ({ singleClass, index }) => {
     })
     console.log(trainers)
 
-    if (isLoading) return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
+    if (isLoading) return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin bg-orange-400"></div>
 
 
     return (
-        <tr >
-            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">{index + 1}</h2>
-                </div>
-            </td>
-            <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                <div>
-                    <h2 className="font-medium text-gray-800 dark:text-white ">{class_title}</h2>
-                </div>
-            </td>
-            <td className="text-sm font-medium ">
-                <div>
-                    <img src={image} className=" w-48 h-48 rounded-md" />
-                </div>
-            </td>
+        <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800">
+            <div>
+                <img src={image} alt="" className="object-cover w-full mb-4 h-44 sm:h-96 dark:bg-gray-500" />
+                <h2 className="mb-1 text-xl font-semibold"><span className="text-orange-700">Class Name:</span>   {class_title}</h2>
+                <p className="text-sm dark:text-gray-600">{description}</p>
+            </div>
+            <div className="">
+                <div className="">
+                    <h1 className="font-bold ">Trainer list of this class</h1>
+                    <div className="grid grid-cols-5">
+                        {
+                            trainers?.map((trainer) => {
+                                return <Link key={trainer?._id} to={"/trainer/" + trainer?._id}   >
+                                    <img src={trainer?.image} className="rounded-[50%] h-12 w-12" alt="" />
+                                </Link>
+                            })
+                        }
 
-            <td className="px-4 py-4 text-sm whitespace-nowrap">
-                <div>
-                    <p className="text-gray-500 dark:text-gray-400">{description}</p>
-                </div>
-            </td>
-            {/* trainer data map */}
-            {
-                trainers.map(trainer => <td key={trainer._id} className="p-4 text-sm whitespace-nowrap">
-                    <div className="flex items-center gap-1">
-                        <img className="object-cover w-10 h-10 border-2 border-white rounded-full dark:border-gray-700 shrink-0" src={trainer.image} alt="" />
+
                     </div>
-                </td>)
-            }
-        </tr>
+                </div>
+            </div>
+        </div>
     );
 };
 

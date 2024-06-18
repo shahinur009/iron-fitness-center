@@ -39,6 +39,7 @@ const Login = () => {
 
                 email: result?.user?.email,
                 name: result?.user?.displayName,
+                role:'member'
 
             })
             console.log(data)

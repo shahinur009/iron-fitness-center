@@ -21,6 +21,8 @@ import AddNewClass from "../pages/Dashboard/Admin/AddNewClass";
 import AllTrainersInfo from "../pages/Dashboard/Admin/AllTrainersInfo";
 import Activity from "../pages/Dashboard/Member/Activity";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
+import TrainerBooked from "../pages/AllClasses/Booked/TrainerBooked";
+import PayNow from "../pages/Payment/PayNow";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +39,10 @@ export const router = createBrowserRouter([
                 element: <AllTrainers />
             },
             {
+                path: '/pay-now',
+                element: <PayNow />
+            },
+            {
                 path: '/all-classes',
                 element: <AllClasses />
             },
@@ -47,6 +53,10 @@ export const router = createBrowserRouter([
             {
                 path: '/becomeATrainer',
                 element: <BecomeATrainer />
+            },
+            {
+                path: 'bookingPage',
+                element: <TrainerBooked />
             },
             {
                 path: '/trainer/:id',
