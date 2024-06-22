@@ -1,11 +1,11 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hook/useAuth";
-import useTrainer from "../hook/UseTrainer";
+import useMember from "../hook/useMember";
 
 const MemberRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
-    const [isMember, isMemberLoading] = useTrainer();
+    const [isMember, isMemberLoading] = useMember();
 
     if (loading || isMemberLoading) {
         return <span className="loading loading-spinner loading-lg"></span>

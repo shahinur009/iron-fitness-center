@@ -7,11 +7,11 @@ const useMember = () => {
     const { user, loading } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: isMember, isPending: isMemberLoading } = useQuery({
-        queryKey: [user?.email, 'trainer'],
+        queryKey: [user?.email, 'member'],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/admin/${user.email}`)
-            return res.data?.admin;
+            const res = await axiosSecure.get(`/users/member/${user.email}`)
+            return res.data?.member;
         }
     })
     return [isMember, isMemberLoading]
