@@ -15,7 +15,7 @@ const Testimonials = () => {
     const { data: reviews = [], isLoading } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const { data } = await axiosPublic.get('/trainers');
+            const { data } = await axiosPublic.get('/review');
             return data;
         }
     })
@@ -52,9 +52,9 @@ const Testimonials = () => {
             >
 
                 {
-                    reviews.map(review => <SwiperSlide
-                        key={review._id} >
-                        <TestimonialsCard review={review}></TestimonialsCard>
+                    reviews.map(rev => <SwiperSlide
+                        key={rev._id} >
+                        <TestimonialsCard rev={rev}></TestimonialsCard>
                     </SwiperSlide>)
                 }
             </Swiper>

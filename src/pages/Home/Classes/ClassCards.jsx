@@ -1,20 +1,16 @@
-
-const ClassCards = ({ singleClass }) => {
-    const { class_title, image, trainer, description, } = singleClass;
-
+const ClassCards = ({item}) => {
+    const {image, title, description, total_bookings} = item;
     return (
-        <div className="max-w-sm max-h-screen w-full h-full bg-black rounded-lg border-gray-200  shadow dark:bg-gray-800 dark:border-gray-700 text-white">
-            <a href="#">
-                <img className="rounded-t-lg" src={image} alt="" />
-            </a>
-            <div className="p-5">
-                <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight dark:text-white">{class_title}</h5>
-                </a>
-                <p className="font-semibold">Trainer: {trainer}</p>
-                <p className="mb-3 font-normal dark:text-gray-400">{description}</p>
-
+        <div className="flex space-x-4">
+            <img style={{borderRadius: '30%'}} className="w-1/2 h-1/2 md:w-[120px] md:h-[120px]"  src={image} alt="" />
+            <div>
+                <h3 className="uppercase text-violet-500 font-bold text-lg">{title}*</h3>
+                <p>{description}</p>
+                <p className="font-bold">Booking: {total_bookings}</p>
+              
             </div>
+              
+          
         </div>
     );
 };

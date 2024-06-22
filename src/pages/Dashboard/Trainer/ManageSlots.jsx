@@ -10,7 +10,7 @@ const ManageSlots = () => {
     const { data, index } = useQuery({
         queryKey: ['slot', user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/slot/${user?.email}`)
+            const { data } = await axiosSecure.get(`/slot-email/${user?.email}`)
             console.log(data)
             return (data, index);
         }

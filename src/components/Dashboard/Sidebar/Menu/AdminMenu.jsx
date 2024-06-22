@@ -13,7 +13,7 @@ const AdminMenu = () => {
             <MenuItems
                 icon={MdOutlineManageHistory}
                 label='Add New Forum'
-                address='addNewForum'
+                address='addNewForumAdmin'
             />
         </>
     );

@@ -1,99 +1,88 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hook/axiosSecure/useAxiosSecure";
 import useAuth from "../../../hook/useAuth";
-import Select from 'react-select';
-import { TbFidgetSpinner } from "react-icons/tb";
-import { Helmet } from "react-helmet-async";
-import { useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
+import Select from "react-select";
+import { TbFidgetSpinner } from "react-icons/tb";
+
 
 const AddNewSlot = () => {
     const { user, loading } = useAuth() || {};
     const axiosSecure = useAxiosSecure();
     const [selectedSkills, setSelectedSkills] = useState([]);
     const [selectedDays, setSelectedDays] = useState([]);
-    const [selectedTimes, setSelectedTimes] = useState([]);
+    const [inputTimes, setInputTimes] = useState("");
 
-
-    const { data } = useQuery({
-        queryKey: ['slot', user?.email],
+    // Fetch slot data for the logged-in user
+    const { data: slotData } = useQuery({
+        queryKey: ["slot", user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/slot/${user?.email}`)
-            console.log(data)
+            const { data } = await axiosSecure.get(`/slot-email/${user?.email}`);
             return data;
+        },
+        enabled: !!user?.email, // only run the query if user.email is available
+    });
 
-        }
-
-    })
-    const { data: classes } = useQuery({
-        queryKey: ['classes'],
+    // Fetch class data from the server
+    const { data: classes, isLoading: isLoadingClasses } = useQuery({
+        queryKey: ["class"],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/classes`)
-            console.log(data)
+            const { data } = await axiosSecure.get(`/class`);
             return data;
+        },
+    });
 
-        }
-
-    })
     const { mutateAsync } = useMutation({
-        mutationFn: async trainerSlotData => {
-            const { data } = await axiosSecure.post(`/trainers`, trainerSlotData)
+        mutationFn: async (trainerSlotData) => {
+            const { data } = await axiosSecure.post(`/slot`, trainerSlotData);
             return data;
         },
         onSuccess: () => {
-            console.log('Data saved successfully')
-        }
+            toast.success("Slot added successfully");
+        },
+        onError: (error) => {
+            toast.error(`Error: ${error.message}`);
+        },
+    });
 
-    })
+    useEffect(() => {
+        if (slotData) {
+            setSelectedDays(slotData.day.map(day => ({ value: day, label: day })));
+        }
+    }, [slotData]);
+
     const handleClassAdd = async (e) => {
         e.preventDefault();
         const form = e.target;
         const trainerName = form.trainerName.value;
         const email = form.email.value;
-        const day = selectedDays.map(day => day?.value);
-        const time = selectedTimes.map(time => time?.value);
-        const skill = selectedSkills.map(skill => skill?.value);
-
-
+        const day = selectedDays.map((day) => day?.value);
+        const time = inputTimes.split(",").map((time) => time.trim());
+        const skill = selectedSkills.map((skill) => skill?.value);
 
         const trainer = {
             name: user?.displayName,
             email: user?.email,
             image: user?.photoURL,
-        }
-        try {
-            const trainerSlotData = { trainerName, email, trainer, day, time, skill }
-            // console.table(trainerSlotData)
-            await mutateAsync(trainerSlotData)
-            toast.success('class add successfully')
-        } catch (err) {
-            console.log(err)
-        }
+        };
 
-    }
-    const options = [
-        { value: 'Saturday', label: 'Saturday' },
-        { value: 'Sunday', label: 'Sunday' },
-        { value: 'Monday', label: 'Monday' },
-        { value: 'TuesDay', label: 'TuesDay' },
-        { value: 'WednesDay', label: 'WednesDay' },
-        { value: 'Thursday', label: 'Thursday' },
-        { value: 'Friday', label: 'Friday' },
+        const trainerSlotData = { trainerName, email, trainer, day, time, skill };
+        await mutateAsync(trainerSlotData);
+    };
+
+    const dayOptions = [
+        { value: "Saturday", label: "Saturday" },
+        { value: "Sunday", label: "Sunday" },
+        { value: "Monday", label: "Monday" },
+        { value: "Tuesday", label: "Tuesday" },
+        { value: "Wednesday", label: "Wednesday" },
+        { value: "Thursday", label: "Thursday" },
+        { value: "Friday", label: "Friday" },
     ];
-    const times = [
-        { value: 'Morning- 06am to 08am', label: 'Morning- 06am to 08am' },
-        { value: 'Evening- 16pm to 18pm', label: 'Evening- 16pm to 18pm' },
-        { value: 'Night- 21pm to 23pm', label: 'Night- 21pm to 23pm' },
-    ];
-    const skills = [
-        { value: 'Yoga', label: 'Yoga' },
-        { value: 'Zumba Dance', label: 'Zumba Dance' },
-        { value: 'Body Building', label: 'Body Building' },
-        { value: 'Musculation', label: 'Musculation' },
-        { value: 'Fitness Running', label: 'Fitness Running' },
-        { value: 'Weight Lifting', label: 'Weight Lifting' },
-        { value: 'Classic Yoga', label: 'Classic Yoga' },
-    ];
+
+
     return (
         <div>
             <Helmet>
@@ -105,11 +94,12 @@ const AddNewSlot = () => {
                 </h2>
 
                 <form onSubmit={handleClassAdd} className="space-y-4">
-                    {/* Class name and Image */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-white text-lg font-bold">Trainer Name</span>
+                                <span className="label-text text-white text-lg font-bold">
+                                    Trainer Name
+                                </span>
                             </label>
                             <input
                                 required
@@ -121,7 +111,9 @@ const AddNewSlot = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-white text-lg font-bold">Email</span>
+                                <span className="label-text text-white text-lg font-bold">
+                                    Email
+                                </span>
                             </label>
                             <input
                                 required
@@ -130,58 +122,54 @@ const AddNewSlot = () => {
                                 className="input input-bordered input-double-line"
                             />
                         </div>
-
                         <div>
-                            <label className="text-white dark:text-gray-200" >Days</label>
-                            <Select className='px-4 py-2 mt-2'
-                                name='day'
-                                options={options}
-                                labelField='label'
-                                valueField='label'
-                                disabled
-                                defaultValue={data?.day?.map(d => { return { value: `${d}`, label: `${d}` } })}
+                            <label className="text-white dark:text-gray-200">Days</label>
+                            <Select
+                                className="px-4 py-2 mt-2"
+                                name="day"
+                                options={dayOptions}
+                                labelField="label"
+                                valueField="label"
+                                value={selectedDays}
                                 isMulti
                                 onChange={setSelectedDays}
                             />
                         </div>
                         <div>
-                            <label className="text-white dark:text-gray-200" >Times</label>
-                            <Select className='px-4 py-4'
-                                name='time'
-                                options={times}
-                                labelField='label1'
-                                valueField='label1'
-                                disabled
-                                defaultValue={data?.time?.map(t => { return { value: `${t}`, label: `${t}` } })}
-                                isMulti
-                                onChange={setSelectedTimes}
+                            <label className="text-white dark:text-gray-200">Times</label>
+                            <input
+                                type="number"
+                                className="px-4 py-2 mt-2 w-full text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                                placeholder="Enter times"
+                                value={inputTimes}
+                                onChange={(e) => setInputTimes(e.target.value)}
                             />
                         </div>
-
                     </div>
                     <div>
-                        <label className="text-white dark:text-gray-200" >Class Name</label>
-                        <Select className='px-4 py-2 mt-2'
-                            name='Skill'
-                            options={skills}
-                            labelField='label2'
-                            disabled
-                            valueField='label2'
-                            defaultValue={classes?.map(s => { return { value: `${s}`, label: `${s}` } })}
+                        <label className="text-white">Class Name</label>
+                        <Select
+                            className="px-4 py-2 mt-2 text-red-500"
+                            name="Skill"
+                            options={classes?.map(c => ({
+                                value: c.class_title, label: c.class_title
+                            }))}
+                            labelField="label"
+                            valueField="label"
+                            isLoading={isLoadingClasses}
                             isMulti
                             onChange={setSelectedSkills}
                         />
                     </div>
-                    {/* User Info */}
                     <button
                         disabled={loading}
-                        type='submit'
-                        className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-orange-400'
+                        type="submit"
+                        className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-orange-400"
                     >
                         {loading ? (
-                            <TbFidgetSpinner className='animate-spin m-auto' />
+                            <TbFidgetSpinner className="m-auto animate-spin" size={24} />
                         ) : (
-                            ' Add Class & Continue'
+                            "Add New Slot"
                         )}
                     </button>
                 </form>

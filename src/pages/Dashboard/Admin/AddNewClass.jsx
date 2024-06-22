@@ -102,7 +102,7 @@ const AddNewClass = () => {
                     <button
                         disabled={loading}
                         type='submit'
-                        className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500'
+                        className='w-full p-3 mt-5 text-center font-medium btn-success btn transition duration-200 rounded shadow-md bg-rose-500'
                     >
                         {loading ? (
                             <TbFidgetSpinner className='animate-spin m-auto' />

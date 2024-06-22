@@ -39,7 +39,7 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/all-trainer'>All Trainer</Link></li>
         <li><Link to='/all-classes'>All Classes</Link></li>
-        <li><Link to='/all-classes'>Community</Link></li>
+        <li><Link to='/all-forums'>Community</Link></li>
         {user ? <>
             <li><Link to='/dashboard'>Dashboard</Link></li>
             <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>

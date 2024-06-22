@@ -14,7 +14,7 @@ const Subscribe = () => {
             email,
         };
 
-        fetch('http://localhost:5000/subscribe', {
+        fetch('https://iron-fitness-server.vercel.app/subscribe', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ const Subscribe = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Email address"
-                                    className="w-full p-4 rounded-md focus:ring focus:ring-violet-400 border-gray-700 dark:border-gray-300"
+                                    className="w-full p-4 rounded-md focus:ring focus:ring-violet-400 text-black border-gray-700 dark:border-gray-300"
                                     required
                                 />
                             </div>
@@ -76,7 +76,7 @@ const Subscribe = () => {
                             </button>
                         </form>
                     </div>
-                    <img src="https://i.ibb.co/87M7N0d/subscribe.jpg" alt="" className="object-cover w-full rounded-md xl:col-span-3 bg-gray-500 dark:bg-gray-500" />
+                    <img src="https://i.ibb.co/87M7N0d/subscribe.jpg" alt="" className="object-cover hidden md:block w-full rounded-md xl:col-span-3 bg-gray-500 dark:bg-gray-500" />
                 </div>
             </section>
         </div>

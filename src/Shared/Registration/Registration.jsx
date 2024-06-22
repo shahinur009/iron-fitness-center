@@ -92,7 +92,7 @@ const Registration = () => {
                         </div>
                         <button
                             disabled={loading}
-                            type="submit" className="block bg-black text-white w-full p-3 text-center rounded-md dark:text-gray-50 dark:bg-violet-600">
+                            type="submit" className="btn btn-success w-full p-3 text-center rounded-md dark:text-gray-50 dark:bg-violet-600">
                             {loading ? <FaSpinner className="animate-spin text-xl text-white mx-auto" /> : 'Registration'}
                         </button>
                     </form>

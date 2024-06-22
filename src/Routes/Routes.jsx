@@ -22,10 +22,13 @@ import AllTrainersInfo from "../pages/Dashboard/Admin/AllTrainersInfo";
 import Activity from "../pages/Dashboard/Member/Activity";
 import BookedTrainer from "../pages/Dashboard/Member/BookedTrainer";
 import TrainerBooked from "../pages/AllClasses/Booked/TrainerBooked";
-<<<<<<< HEAD
 import PayNow from "../pages/Payment/PayNow";
-=======
->>>>>>> c607acb47c137e098a759815acb07dcbf82a9c4d
+import AddNewForumAdmin from "../pages/Dashboard/Admin/AddNewForumAdmin";
+import AllForums from "../pages/AllForums/AllForums";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import TrainerRoute from "./TrainerRoute";
+
 
 export const router = createBrowserRouter([
     {
@@ -50,7 +53,11 @@ export const router = createBrowserRouter([
                 element: <AllClasses />
             },
             {
-                path: '/trainer/:id',
+                path: '/all-forums',
+                element: <AllForums />
+            },
+            {
+                path: '/slot/:id',
                 element: <TrainerDetails />
             },
             {
@@ -78,7 +85,9 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute>
+            <DashboardLayout />
+        </PrivateRoute>,
         children: [
             // common Route
             {
@@ -92,40 +101,58 @@ export const router = createBrowserRouter([
             // admin Route
             {
                 path: 'all-subscribers',
-                element: <AllSubscribers />
+                element: <AdminRoute>
+                    <AllSubscribers />
+                </AdminRoute>
             },
             {
                 path: 'all-trainers-info',
-                element: <AllTrainersInfo />
+                element: <AdminRoute>
+                    <AllTrainersInfo />
+                </AdminRoute>
             },
             {
                 path: 'apply-trainers',
-                element: <ApplyTrainers />
+                element: <AdminRoute>
+                    <ApplyTrainers />
+                </AdminRoute>
             },
             {
                 path: 'balance',
-                element: <Balance />
+                element: <AdminRoute>
+                    <Balance />
+                </AdminRoute>
             },
             {
                 path: 'add-new-class',
-                element: <AddNewClass />
+                element: <AdminRoute>
+                    <AddNewClass />
+                </AdminRoute>
             },
             {
-                path: 'addNewForum',
-                element: <AddNewForum />
+                path: 'addNewForumAdmin',
+                element: <AdminRoute>
+                    <AddNewForumAdmin />
+                </AdminRoute>
             },
             // Trainer Route
             {
                 path: 'manageSlots',
-                element: <ManageSlots />
+                element: <TrainerRoute>
+                    <ManageSlots />
+                </TrainerRoute>
             },
             {
                 path: 'addNewSlot',
-                element: <AddNewSlot />
+                element: <TrainerRoute>
+                    <AddNewSlot />
+                </TrainerRoute>
             },
             {
-                path: 'addNewForum',
-                element: <AddNewForum />
+                path: 'addNewForumTrainer',
+                element: <TrainerRoute>
+                    <AddNewForum />
+                </TrainerRoute>
             },
             // Member Route
             {

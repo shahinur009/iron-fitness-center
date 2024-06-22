@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../hook/axiosSecure/useAxiosSecure';
 import useAuth from '../../hook/useAuth';
@@ -11,11 +10,13 @@ const PayNow = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   console.log(user)
+  console.log(slot)
+  console.log(trainer)
 
   const handlePayment = () => {
     axiosSecure.post('/pay-now', {
       trainer_info: trainer,
-      trainer_id: trainer._id, slot_name: slot, package_name: packageInfo.name, price: packageInfo.price, user_id: user?.id, email: user?.email
+      trainer_id: trainer._id, slot_name: slot.selectedSlot, package_name: packageInfo.name, price: packageInfo.price, user_id: user?.id, email: user?.email, displayName: user?.displayName, photoURL: user?.photoURL
     })
       .then(data => {
         if (data.data?.result) {
@@ -27,15 +28,16 @@ const PayNow = () => {
       })
   }
 
+
   return (
     <div className="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
       <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
 
       {/* Trainer name */}
-      <p><span className="font-semibold">Trainer Name:</span> {trainer.name}</p>
+      <p><span className="font-semibold">Trainer Name:</span> {trainer?.info?.name}</p>
 
       {/* Slot name */}
-      <p><span className="font-semibold">Slot Name:</span> {slot}</p>
+      <p><span className="font-semibold">Slot Name:</span> {slot.selectedSlot}</p>
 
       {/* Package name */}
       <p><span className="font-semibold">Package Name:</span> {packageInfo.name}</p>
@@ -45,8 +47,9 @@ const PayNow = () => {
 
       {/* Your name, email & other info */}
       <div className="mt-4">
-        <p><span className="font-semibold">Your Name:</span> {user.displayName}</p>
-        <p><span className="font-semibold">Email:</span> {user.email}</p>
+        <p><span className="font-semibold">Your Name:</span> {user?.displayName}</p>
+        <p><span className="font-semibold">Your photoURL:</span> {user?.photoURL}</p>
+        <p><span className="font-semibold">Email:</span> {user?.email}</p>
       </div>
 
       {/* Confirm Button */}

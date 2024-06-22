@@ -9,7 +9,7 @@ const Balance = () => {
     const [subscribers, setSubscribers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/subscribers')
+        fetch('https://iron-fitness-server.vercel.app/subscribers')
             .then(res => res.json())
             .then(data => setSubscribers(data))
             .catch(error => console.error('Error fetching subscribers:', error));
@@ -18,7 +18,7 @@ const Balance = () => {
     const [trainers, setTrainers] = useState([]);
     // const axios = useAxiosSecure();
     let fetchTrainer = () => {
-        fetch('http://localhost:5000/payment-list')
+        fetch('https://iron-fitness-server.vercel.app/payment-list')
             .then(res => res.json())
             .then(data => setTrainers(data?.data))
             .catch(error => console.error('Error fetching trainers:', error));
@@ -52,7 +52,7 @@ const Balance = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {trainers?.reverse()?.slice(0, 6).map((subscriber, index) => {
+                        {trainers?.slice(-6).reverse().map((subscriber, index) => {
                             return <tr key={subscriber._id} className="font-bold text-black" >
                                 <td className="border px-4 py-4">{index + 1}</td>
                                 <td className="border px-4 py-4">{subscriber?.email}</td>
@@ -75,11 +75,13 @@ const Balance = () => {
                     </tfoot>
                 </table>
 
-                <PieChart paiData={{
-                    total_subscriber:subscribers.length,
-                    paid_members:trainers.length
-                }
-                } />
+                <div className="w-full md:w-1/2 mx-auto ">
+                    <PieChart paiData={{
+                        total_subscriber: subscribers.length,
+                        paid_members: trainers.length
+                    }
+                    } />
+                </div>
             </div>
         </div>
     );

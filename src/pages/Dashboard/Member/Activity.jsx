@@ -1,89 +1,104 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../../hook/useAuth";
-import SectionTitle from "../../../components/sectionTitle/SectionTitle";
+import { useState } from "react";
 import useAxiosSecure from "../../../hook/axiosSecure/useAxiosSecure";
-import toast from "react-hot-toast";
-import useRole from "../../../hook/useRole";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../../hook/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { FaEye } from "react-icons/fa";
 
 
 const Activity = () => {
-    const { loading } = useAuth();
-    const [trainers, setTrainers] = useState([]);
-    const axios = useAxiosSecure();
-    let navigate = useNavigate()
-    let role = useRole();
-    if (role == 'trainer') {
-        navigate('/')
-    }
-    let fetchTrainer = () => {
-        fetch('http://localhost:5000/users/trainer')
-            .then(res => res.json())
-            .then(data => setTrainers(data))
-            .catch(error => console.error('Error fetching trainers:', error));
-    }
-    useEffect(() => {
-        fetchTrainer()
-    }, []);
-    const handleDelete = async (email) => {
-        let res = await axios.post(`http://localhost:5000/users/trainer/demote/${email}`)
-        console.log(res.data)
-        if (res.status == 200) {
-            fetchTrainer()
-            toast.success(res.data.message)
-        } else {
-            toast.error(res.data.message || "Something Went Wrong")
+    const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+    const [showModal, setShowModal] = useState(false);
+    const [selectedFeedback, setSelectedFeedback] = useState(null);
+
+    const { data: slots = [], isLoading, error } = useQuery({
+        queryKey: ["slots", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/slots/${user?.email}`);
+            return [data];
         }
+    });
 
+    const { data: feedbacks = [] } = useQuery({
+        queryKey: ["feedbacks", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/feedback/${user?.email}`);
+            return [data];
+        }
+    });
 
-    }
+    const openModal = (user) => {
+        // Ensure feedbacks is an array before attempting to find feedback
+        if (Array.isArray(feedbacks)) {
+            const slotFeedback = feedbacks.find((fb) => fb?.email === user?.email);
+            setSelectedFeedback(slotFeedback);
+            setShowModal(true);
+        } else {
+            console.error("Feedbacks data is not an array:", feedbacks);
+            // Handle the case where feedbacks data is not an array (e.g., show error message)
+        }
+    };
 
-    if (loading) {
-        return <div className="flex justify-center my-40 text-purple-700 mt-44 items-center"><span className="loading loading-spinner loading-lg "></span></div>
-    }
+    const closeModal = () => {
+        setSelectedFeedback(null);
+        setShowModal(false);
+    };
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading data</div>;
+
     return (
-        <div className="mb-20">
-            <SectionTitle heading="Activity Log" />
-            <div className="overflow-x-auto rounded-xl">
-                <table className="min-w-full bg-white dark:bg-gray-800">
-                    <thead className="bg-black text-lg font-bold text-white">
-                        <tr className="text-left">
-                            <th className="w-1/3 px-4 py-4">Sl</th>
-                            <th className="w-1/3 px-4 py-4">Name</th>
-                            <th className="w-1/3 px-4 py-4">Email</th>
-                            <th className="w-1/3 px-4 py-4">Role</th>
-                            <th className="w-1/3 px-4 py-4">Status</th>
-                            <th className="w-1/3 px-4 py-4">Action</th>
-                            {/* <th className="w-1/3 px-4 py-2">Subscription Date</th> */}
+        <div>
+            <h1 className="text-xl font-bold mb-4">Trainer Application Status</h1>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {trainers.map((subscriber, index) => (
-                            <tr key={subscriber._id} className="font-bold text-black">
-                                <td className="border px-4 py-4">{index + 1}</td>
-                                <td className="border px-4 py-4">{subscriber?.name}</td>
-                                <td className="border px-4 py-4">{subscriber?.email}</td>
-                                <td className="border px-4 py-4">{subscriber?.role}</td>
-                                <td className="border px-4 py-4">{subscriber?.status}</td>
-                                <td className="border px-4 py-4">
-                                    {
-                                        subscriber?.status == 'rejected' ? <button
-
-                                            onClick={() => {
-
-                                            }}
-                                            className="btn btn-sm btn-success text-white">
-                                            <i className="fa fa-eye" aria-hidden="true"></i>
-
-                                        </button> : null
-                                    }
-                                </td>
-
+                        {Array.isArray(slots) && slots.length > 0 ? (
+                            slots.map((slot, index) => (
+                                <tr key={slot._id}>
+                                    <td>{index + 1}</td>
+                                    <td>{slot?.info?.email}</td>
+                                    <td>{slot?.info?.status}</td>
+                                    <td>
+                                        <button className="btn" onClick={() => openModal(user)}>
+                                            <FaEye /> {/* Eye icon */}
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4">No applications found</td>
                             </tr>
-                        ))}
+                        )}
                     </tbody>
                 </table>
             </div>
+
+            {/* Modal */}
+            {showModal && selectedFeedback && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="modal-box bg-white p-6 rounded shadow-lg">
+                        <h3 className="font-bold text-lg">Feedback</h3>
+                        <p className="py-2">
+                            <strong>Message:</strong> {selectedFeedback?.message || "No feedback available"}
+                        </p>
+                        <div className="modal-action">
+                            <button className="btn" onClick={closeModal}>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

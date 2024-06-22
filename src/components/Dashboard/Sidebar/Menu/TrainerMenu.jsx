@@ -10,7 +10,7 @@ const TrainerMenu = () => {
             <MenuItems
                 icon={MdOutlineManageHistory}
                 label='Add New Forum'
-                address='addNewForum'
+                address='addNewForumTrainer'
             />
         </>
     );

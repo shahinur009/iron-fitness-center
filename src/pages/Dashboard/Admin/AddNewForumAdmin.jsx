@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useAuth from "../../../hook/useAuth";
 import useAxiosSecure from "../../../hook/axiosSecure/useAxiosSecure";
+import useAuth from "../../../hook/useAuth";
 import Swal from "sweetalert2";
 import { imageUpload } from "../../../Api/Utilities/Utilities";
 import { Helmet } from "react-helmet-async";
 import { TbFidgetSpinner } from "react-icons/tb";
 
-const AddNewForum = () => {
+const AddNewForumAdmin = () => {
   const { user, loading } = useAuth() || {};
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
@@ -74,7 +74,7 @@ const AddNewForum = () => {
   return (
     <div>
       <Helmet>
-        <title>Trainer | Add New Forum</title>
+        <title>Admin | Add Forum</title>
       </Helmet>
       <div className="text-lg bg-violet-900 font-bold p-4 md:p-8 lg:p-16 my-16 mx-2 rounded-md">
         <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-lato text-center font-extrabold mb-6">
@@ -196,4 +196,4 @@ const AddNewForum = () => {
   );
 };
 
-export default AddNewForum;
+export default AddNewForumAdmin;

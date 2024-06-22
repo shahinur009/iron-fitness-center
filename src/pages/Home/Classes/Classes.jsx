@@ -1,42 +1,47 @@
-import SectionTitle from "../../../components/sectionTitle/SectionTitle";
-import ClassCards from "./ClassCards";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hook/axiosPublic/useAxiosPublic";
+import ClassCards from "./ClassCards";
+import SectionTitle from "../../../components/sectionTitle/SectionTitle";
+import { Pagination } from "flowbite-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Classes = () => {
     const axiosPublic = useAxiosPublic();
+    const [currentPage, setCurrentPage] = useState(1);
+    const onPageChange = (page) => setCurrentPage(page);
+    const [totalPage, setTotalPage] = useState(1)
 
-    const { data: allClass = [], isLoading } = useQuery({
-        queryKey: ['classes'],
+
+    const { data: classes = [] } = useQuery({
+        queryKey: ['class'],
         queryFn: async () => {
-            const { data } = await axiosPublic.get('/classes')
-            // const popularDat = data.category === 'popular'
-            // console.log(data)
-            return data
+            const { data } = await axiosPublic.get(`/class`)
+            
+            return data;
         }
 
     })
-    // console.log(allClass)
 
-    if (isLoading) return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600"></div>
+
     return (
-        <div>
-            <SectionTitle
-                heading={'Features Classes'}>
-            </SectionTitle>
-            <div>
-                <div className="grid md:grid-cols-2 text-white my-5 lg:grid-cols-3 gap-5">
-                    {
-                        allClass.map(singleClass => <ClassCards
-                            key={singleClass._id} singleClass={singleClass}
-                        ></ClassCards>)
-                    }
 
-                </div>
-                <div className=" text-center">
-                    <Link to='/all-classes' className="btn px-10 btn-lg bg-black text-white"> See More Classes</Link>
-                </div>
+        <div className="my-10">
+            <SectionTitle
+                heading={'Popular Classes'}>
+            </SectionTitle>
+            <div className="grid md:grid-cols-2 gap-6">
+                {
+                    classes.map(item => <ClassCards
+                        key={item._id}
+                        item={item}
+                    ></ClassCards>)
+                }
+
+            </div>
+            <div className="w-full flex items-center justify-center">
+                <Link to='all-classes' className="btn btn-success mx-auto w-1/2">See More</Link>
             </div>
         </div>
     );
