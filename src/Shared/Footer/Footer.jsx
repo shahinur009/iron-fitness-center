@@ -4,7 +4,7 @@ const Footer = () => {
         <div>
             <footer className="footer items-center p-4 bg-black text-neutral-content">
                 <aside className="items-center grid-flow-col">
-                    <img className="w-20 h-20 md:w-32 md:h-28" src="/src/assets/logo.jpg" alt="" />
+                    <img className="w-20 h-20 md:w-32 md:h-28" src="https://i.ibb.co/vzgTwTp/logo.png" alt="" />
                     <p className="text-[12px] md:text-2xl font-bold">IRON FITNESS</p>
                 </aside>
                 <div className="text-center">

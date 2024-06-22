@@ -81,7 +81,7 @@ const Navbar = () => {
         <>
             <div className="navbar  bg-black text-[#FFFFFF] h-20 container mx-auto py-8 px-8 sticky top-0 left-0 right-0 z-50 mb-4">
                 <Link to='/' className="flex-1">
-                    <img className="w-24 h-20" src="/src/assets/logo.jpg" alt="" />
+                    <img className="w-24 h-20" src="https://i.ibb.co/vzgTwTp/logo.png" alt="" />
                     <span className="text-[12px] md:text-2xl font-bold">IRON FITNESS</span>
                 </Link>
                 <div className="flex-none gap-2 text-black">
