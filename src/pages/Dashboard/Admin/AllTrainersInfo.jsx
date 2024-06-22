@@ -1,6 +1,3 @@
-
-
-
 import { useEffect, useState } from "react";
 import useAuth from "../../../hook/useAuth";
 import SectionTitle from "../../../components/sectionTitle/SectionTitle";
@@ -11,7 +8,7 @@ import toast from "react-hot-toast";
 const AllTrainersInfo = () => {
     const { loading } = useAuth();
     const [trainers, setTrainers] = useState([]);
-    const axios = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     let fetchTrainer = () => {
         fetch('https://iron-fitness-server.vercel.app/users/trainer')
             .then(res => res.json())
@@ -21,18 +18,23 @@ const AllTrainersInfo = () => {
     useEffect(() => {
         fetchTrainer()
     }, []);
+
+    // handle delete function
     const handleDelete = async (email) => {
-        let res = await axios.post(`https://iron-fitness-server.vercel.app/users/trainer/demote/${email}`)
-        console.log(res.data)
-        if (res.status == 200) {
-            fetchTrainer()
-            toast.success(res.data.message)
-        } else {
-            toast.error(res.data.message || "Something Went Wrong")
+        try {
+            const res = await axiosSecure.delete(`/users/${email}`);
+            if (res.status === 200) {
+                fetchTrainer();  // Refetch the updated list of trainers
+                toast.success(res.data.message);
+            } else {
+                toast.error(res.data.message || "Something went wrong");
+            }
+        } catch (error) {
+            console.error('Error deleting trainer:', error);
+            toast.error("An error occurred while deleting the trainer");
         }
+    };
 
-
-    }
 
     if (loading) {
         return <div className="flex justify-center my-40 text-purple-700 mt-44 items-center"><span className="loading loading-spinner loading-lg "></span></div>
