@@ -25,7 +25,6 @@ import TrainerBooked from "../pages/AllClasses/Booked/TrainerBooked";
 import PayNow from "../pages/Payment/PayNow";
 import AddNewForumAdmin from "../pages/Dashboard/Admin/AddNewForumAdmin";
 import AllForums from "../pages/AllForums/AllForums";
-import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
@@ -44,9 +43,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pay-now',
-                element: <PrivateRoute>
-                    <PayNow />
-                </PrivateRoute>
+                element: <PayNow />
             },
             {
                 path: '/all-classes',
@@ -62,21 +59,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/becomeATrainer',
-                element: <PrivateRoute>
-                    <BecomeATrainer />
-                </PrivateRoute>
+                element: <BecomeATrainer />
             },
             {
                 path: 'bookingPage',
-                element: <PrivateRoute>
-                    <TrainerBooked />
-                </PrivateRoute>
+                element: <TrainerBooked />
             },
             {
                 path: '/trainer/:id',
-                element: <PrivateRoute>
-                    <TrainerDetails />
-                </PrivateRoute>
+                element: <TrainerDetails />
 
             },
             {
@@ -91,9 +82,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute>
-            <DashboardLayout />
-        </PrivateRoute>,
+        element: <DashboardLayout />,
         children: [
             // common Route
             {
