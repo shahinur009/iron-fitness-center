@@ -14,7 +14,7 @@ const ApplyTrainers = () => {
   const axiosSecure = useAxiosSecure();
 
   const fetchTrainer = () => {
-    axiosSecure.get("/slot-slot")
+    axiosSecure.get("/slot-slot",)
       .then((res) => setTrainers(res.data))
       .catch((error) => console.error("Error fetching trainers:", error));
   };
@@ -68,7 +68,7 @@ const ApplyTrainers = () => {
 
   useEffect(() => {
     fetchTrainer();
-  }, [fetchTrainer]);
+  }, []);
 
   if (loading) {
     return (

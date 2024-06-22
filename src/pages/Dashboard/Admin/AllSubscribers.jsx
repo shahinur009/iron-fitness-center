@@ -8,7 +8,7 @@ const AllSubscribers = () => {
     const [subscribers, setSubscribers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/subscribers')
+        fetch('https://iron-fitness-server.vercel.app/subscribers')
             .then(res => res.json())
             .then(data => setSubscribers(data))
             .catch(error => console.error('Error fetching subscribers:', error));
