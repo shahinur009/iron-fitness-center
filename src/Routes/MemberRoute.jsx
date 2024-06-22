@@ -2,7 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import useTrainer from "../hook/UseTrainer";
 
-const TrainerRoute = ({ children }) => {
+const MemberRoute = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
     const [isMember, isMemberLoading] = useTrainer();
@@ -16,4 +16,4 @@ const TrainerRoute = ({ children }) => {
     return <Navigate to='/' state={{ from: location }} replace></Navigate>
 };
 
-export default TrainerRoute;
+export default MemberRoute;

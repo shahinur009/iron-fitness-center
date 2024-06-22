@@ -28,6 +28,7 @@ import AllForums from "../pages/AllForums/AllForums";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import TrainerRoute from "./TrainerRoute";
+import MemberRoute from "./MemberRoute";
 
 
 export const router = createBrowserRouter([
@@ -46,7 +47,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pay-now',
-                element: <PayNow />
+                element: <PrivateRoute>
+                    <PayNow />
+                </PrivateRoute>
             },
             {
                 path: '/all-classes',
@@ -62,15 +65,21 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/becomeATrainer',
-                element: <BecomeATrainer />
+                element: <PrivateRoute>
+                    <BecomeATrainer />
+                </PrivateRoute>
             },
             {
                 path: 'bookingPage',
-                element: <TrainerBooked />
+                element: <PrivateRoute>
+                    <TrainerBooked />
+                </PrivateRoute>
             },
             {
                 path: '/trainer/:id',
-                element: <TrainerDetails />
+                element: <PrivateRoute>
+                    <TrainerDetails />
+                </PrivateRoute>
 
             },
             {
@@ -157,11 +166,15 @@ export const router = createBrowserRouter([
             // Member Route
             {
                 path: 'activity',
-                element: <Activity />
+                element: <MemberRoute>
+                    <Activity />
+                </MemberRoute>
             },
             {
                 path: 'bookedTrainer',
-                element: <BookedTrainer />
+                element: <MemberRoute>
+                    <BookedTrainer />
+                </MemberRoute>
             }
         ],
     }
