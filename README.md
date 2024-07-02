@@ -1,5 +1,4 @@
-Client site Github link => https://github.com/programming-hero-web-course1/b9a12-client-side-shahinur009
-Server site Github link => https://github.com/programming-hero-web-course1/b9a12-server-side-shahinur009
+
 Firebase Live site link =>https://iron-fitness-4500d.web.app/
 vercel deploy link => https://iron-fitness-server.vercel.app/
 
