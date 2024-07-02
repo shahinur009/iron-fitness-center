@@ -1,17 +1,10 @@
-Assignment_ID => Assignment_category_0010
-
 Client site Github link => https://github.com/programming-hero-web-course1/b9a12-client-side-shahinur009
-
 Server site Github link => https://github.com/programming-hero-web-course1/b9a12-server-side-shahinur009
-
 Firebase Live site link =>https://iron-fitness-4500d.web.app/
-
-
 vercel deploy link => https://iron-fitness-server.vercel.app/
 
 admin password => 123456
 admin user => raju@gmail.com
-
 
 Pages:
 1. Home
@@ -24,6 +17,9 @@ Pages:
 8. Error page 
 9. Balance
 10. Dashboard
+11. Admin Route
+12. Trainer Route
+13. Member Route
 
 Use NPM package
 1. npm install react-icons --save
@@ -39,6 +35,11 @@ Use NPM package
 use: custom hooks
 1. useAuth
 2. useAxiosSecure
+
+clone this:
+1. npm i
+2. npm run dev
+3. npm run build
 
 
 
