@@ -1,7 +1,3 @@
-To bring your README file to modern standards, I made it more engaging and professional by adding sections commonly seen in popular open-source projects, including badges, an organized table of contents, usage instructions, and a clean design. Here's a revised version:
-
----
-
 # Iron Fitness 🏋️‍♂️
 
 [![Firebase Deployment](https://img.shields.io/badge/firebase-live-blue)](https://iron-fitness-4500d.web.app/)
